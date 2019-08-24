@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sc="http://primefaces.org/ui/showcase"
+      lang="en">
+
+    <h:head>
+        <title>Update Datatable Test - alternative 2</title>
+    </h:head>
+
+    <h:body>
+
+		<h:form id="testForm2">
+		    <p:dataTable id="myEntityTable" var="myEntity" value="#{myController.allEntities}" rowIndexVar="rowIndex">
+		
+		        <p:column headerText="id">
+		            <h:outputText value="#{myEntity.id}"/>
+		        </p:column>
+		        
+		        <p:column headerText="last update 1">
+		        	<p:outputPanel>
+		            	<h:outputText value="#{myEntity.lastUpdate}">
+		            		<f:convertDateTime pattern="HH:mm:ss" type="date" />
+		            	</h:outputText>
+		            </p:outputPanel>
+		        </p:column>
+		        
+		        <p:column headerText="last update 2">
+	            	<h:outputText value="#{myEntity.lastUpdate}">
+	            		<f:convertDateTime pattern="HH:mm:ss" type="date" />
+	            	</h:outputText>
+		        </p:column>
+		        
+		        <p:column headerText="counter">
+		        	<p:outputPanel>
+		            	<h:outputText value="#{myEntity.counter}"/>
+		            </p:outputPanel>
+		        </p:column>
+		
+		        <p:column headerText="increment">
+		            <p:commandButton value="+"
+		            	actionListener="#{myController.increment(myEntity)}"
+		            	update="@form:myEntityTable:@row(#{rowIndex})"/>
+		        </p:column>
+		    </p:dataTable>
+		</h:form>
+
+    </h:body>
+
+</html>
